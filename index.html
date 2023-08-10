@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #inp {
+        width: 200px;
+        height: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="inp" />
+  </body>
+</html>
+<script>
+  const inputElement = document.getElementById("inp");
+  let secondary = [];
+  let input = [];
+  let debounceTimer;
+  let popped;
+
+  inputElement.addEventListener("input", function (event) {
+    debounceTimer = setTimeout(() => {
+      const typedLetter = event.data;
+      if (typedLetter) {
+        input.push(typedLetter);
+        console.log(input);
+      }
+    }, 300);
+  });
+
+  inputElement.addEventListener("keydown", function (event) {
+    if ((event.ctrlKey || event.metaKey) && event.key === "z") {
+      event.preventDefault();
+      console.log("undo");
+      popped = input.pop();
+      secondary.push(popped);
+      console.log(secondary);
+
+      inputElement.value = input.join("");
+    } else if ((event.ctrlKey || event.metaKey) && event.key === "y") {
+      console.log("Here");
+      event.preventDefault();
+      popped = secondary.pop();
+      input.push(popped);
+      inputElement.value = input.join("");
+    }
+  });
+</script>
