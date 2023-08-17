@@ -27,6 +27,14 @@ const data = [
   },
 ];
 
-const filteredData = data.filter((item) => colors.includes(item.color));
+// const filteredData = data.filter((item) => colors.includes(item.color));
+arr = [];
+data.some(checkColor);
+function checkColor(item) {
+  if (colors.includes(item.color)) {
+    arr.push(item);
+  }
+}
 
-console.log(filteredData);
+console.log(arr);
+
