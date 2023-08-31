@@ -1,3 +1,5 @@
+
+
 let input = "(])";
 // let input = "([{}]{()}[{}])";
 let inputSplit = input.split("");
@@ -26,7 +28,6 @@ function validStr(inputModified) {
     } else {
       stackPopped = stack.pop();
 
-      // Check if the popped stack element matches the current input character's corresponding bracket
       if (mapping[stackPopped] !== inputPopped) {
         console.log("invalid string");
 
